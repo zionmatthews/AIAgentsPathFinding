@@ -329,26 +329,64 @@
     #endif
 #endif
 
-// Vector2 type
-typedef struct Vector2 {
-    float x;
-    float y;
-} Vector2;
+#include <cmath>
+		// Vector2 type
+		typedef struct Vector2 {
+			float x;
+			float y;
 
-// Vector3 type
-typedef struct Vector3 {
-    float x;
-    float y;
-    float z;
-} Vector3;
+			Vector2 operator +(Vector2 rhs)
+			{
+				return Vector2{ x + rhs.x, y + rhs.y };
+			}
 
-// Vector4 type
-typedef struct Vector4 {
-    float x;
-    float y;
-    float z;
-    float w;
-} Vector4;
+			Vector2 operator -(Vector2 rhs)
+			{
+				return Vector2{ x - rhs.x, y - rhs.y };
+			}
+
+			void operator +=(Vector2 rhs)
+			{
+				x += rhs.x;
+				y += rhs.y;
+			}
+
+			Vector2 operator *(float rhs)
+			{
+				return Vector2{ x * rhs, y * rhs };
+			}
+
+			//Magnitude is vector length
+			float magnitude()
+			{
+				return sqrt((x * x) + (y * y));
+			}
+
+			//A normalized vector is the vector divivded by its magnitude
+			Vector2 normalize()
+			{
+				if (x < 1 && x > -1 && y < 1 && y > -1) {
+					return Vector2{ x, y };
+				}
+				return Vector2{ x / magnitude(), y / magnitude() };
+			}
+
+		} Vector2;
+
+		// Vector3 type
+		typedef struct Vector3 {
+			float x;
+			float y;
+			float z;
+		} Vector3;
+
+		// Vector4 type
+		typedef struct Vector4 {
+			float x;
+			float y;
+			float z;
+			float w;
+		} Vector4;
 
 // Quaternion type, same as Vector4
 typedef Vector4 Quaternion;
