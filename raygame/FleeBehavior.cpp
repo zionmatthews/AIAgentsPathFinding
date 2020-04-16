@@ -26,3 +26,4 @@ void FleeBehavior::update(Agent * agent, float deltaTime)
 
 	//Change color
 	agent->setColor(YELLOW);
+}

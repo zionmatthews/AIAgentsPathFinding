@@ -10,6 +10,12 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+#include "Agent.h"
+#include "Behavior.h"
+#include "ChaseBehavior.h"
+#include "FleeBehavior.h"
+#include "KeyboardBehavior.h"
+#include "WanderBehavior.h"
 
 int main()
 {
@@ -21,6 +27,21 @@ int main()
 	InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
 	SetTargetFPS(60);
+
+	//Create the player
+	Agent* player = new Agent();
+	player->setPosition(Vector2{ 100.0f, 100.0f });
+	player->setSpeed(500.0f);
+	player->setColor(SKYBLUE);
+
+	//Creates the keyboard behavior for player
+	KeyboardBehavior* keyboardBehavior = new KeyboardBehavior();
+	player->addBehavior(keyboardBehavior);
+
+	Agent* enemy = new Agent();
+	enemy->setPosition(Vector2{ 500.0f, 500.0f });
+	enemy->setSpeed(250.0f);
+	enemy->setColor(PURPLE);
 	//--------------------------------------------------------------------------------------
 
 	// Main game loop
@@ -28,16 +49,18 @@ int main()
 	{
 		// Update
 		//----------------------------------------------------------------------------------
-		// TODO: Update your variables here
+		player->update(GetFrameTime());
+		enemy->update(GetFrameTime());
 		//----------------------------------------------------------------------------------
 
 		// Draw
 		//----------------------------------------------------------------------------------
 		BeginDrawing();
 
-		ClearBackground(RAYWHITE);
+		ClearBackground(BLACK);
 
-		DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+		player->draw();
+		enemy->draw();
 
 		EndDrawing();
 		//----------------------------------------------------------------------------------
