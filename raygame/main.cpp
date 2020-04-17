@@ -16,6 +16,15 @@
 #include "FleeBehavior.h"
 #include "KeyboardBehavior.h"
 #include "WanderBehavior.h"
+#include "FSMBehavior.h"
+#include "IdleState.h"
+#include "WithinRangeCondition.h"
+#include "EnemyAttackState.h"
+#include "BooleanDecision.h"
+#include "BehaviorDecision.h"
+#include "PursuitBehavior.h"
+#include "DecisionTreeBehavior.h"
+#include "ScreenEdgeBehavior.h"
 
 int main()
 {
@@ -38,10 +47,20 @@ int main()
 	KeyboardBehavior* keyboardBehavior = new KeyboardBehavior();
 	player->addBehavior(keyboardBehavior);
 
+	//Create the enemy
 	Agent* enemy = new Agent();
 	enemy->setPosition(Vector2{ 500.0f, 500.0f });
 	enemy->setSpeed(250.0f);
 	enemy->setColor(PURPLE);
+	ChaseBehavior* chase = new ChaseBehavior();
+	chase->setTarget(player);
+	enemy->addBehavior(chase);
+
+	Agent* enemy2 = new Agent();
+	enemy2->setPosition(Vector2{ 500.0f, 300.0f });
+	enemy2->setSpeed(100.0f);
+	enemy2->setColor(PURPLE);
+	
 	//--------------------------------------------------------------------------------------
 
 	// Main game loop
@@ -51,6 +70,7 @@ int main()
 		//----------------------------------------------------------------------------------
 		player->update(GetFrameTime());
 		enemy->update(GetFrameTime());
+		enemy2->update(GetFrameTime());
 		//----------------------------------------------------------------------------------
 
 		// Draw
@@ -61,6 +81,7 @@ int main()
 
 		player->draw();
 		enemy->draw();
+		enemy2->draw();
 
 		EndDrawing();
 		//----------------------------------------------------------------------------------
