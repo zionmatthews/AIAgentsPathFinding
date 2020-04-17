@@ -22,4 +22,7 @@ void EnemyAttackState::update(Agent* agent, float deltaTime)
 
 	//Apply the force
 	agent->addForce(force * deltaTime);
+
+	//Change color
+	agent->setColor(RED);
 }

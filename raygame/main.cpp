@@ -55,17 +55,31 @@ int main()
 	enemy->setPosition(Vector2{ 500.0f, 500.0f });
 	enemy->setSpeed(250.0f);
 	enemy->setColor(PURPLE);
-	/*ChaseBehavior* chase = new ChaseBehavior();
-	chase->setTarget(player);
-	enemy->addBehavior(chase);*/
+	
+	//Create and add the enemy's FSM
+	FSMBehavior* enemyFSM = new FSMBehavior();
+	enemy->addBehavior(enemyFSM);
+	//Create and add the idle state
+	IdleState* idleState = new IdleState();
+	enemyFSM->addState(idleState);
+	//Create and add the attack state
+	EnemyAttackState* attackState = new EnemyAttackState(player, 250.0f);
+	enemyFSM->addState(attackState);
+	//Create and add the condition
+	Condition* withinRangeCondition = new WithinRangeCondition(player, 200.0f);
+	enemyFSM->addCondition(withinRangeCondition);
+	//Create and add the transition
+	Transition* toAttackTransition = new Transition(attackState, withinRangeCondition);
+	enemyFSM->addTransition(toAttackTransition);
+	idleState->addTransitions(toAttackTransition);
+	//Set current state to idle
+	enemyFSM->setCurrentState(idleState);
 
-	/*Agent* enemy2 = new Agent();
+	//Create Enemy2
+	Agent* enemy2 = new Agent();
 	enemy2->setPosition(Vector2{ 500.0f, 300.0f });
 	enemy2->setSpeed(100.0f);
-	enemy2->setColor(PURPLE);*/
-
-	
-	
+	enemy2->setColor(PURPLE);
 	//--------------------------------------------------------------------------------------
 
 	// Main game loop
@@ -75,7 +89,7 @@ int main()
 		//----------------------------------------------------------------------------------
 		player->update(GetFrameTime());
 		enemy->update(GetFrameTime());
-		/*enemy2->update(GetFrameTime());*/
+		enemy2->update(GetFrameTime());
 		//----------------------------------------------------------------------------------
 
 		// Draw
@@ -86,7 +100,7 @@ int main()
 
 		player->draw();
 		enemy->draw();
-		/*enemy2->draw();*/
+		enemy2->draw();
 
 		EndDrawing();
 		//----------------------------------------------------------------------------------
