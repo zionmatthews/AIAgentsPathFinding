@@ -25,6 +25,9 @@
 #include "PursuitBehavior.h"
 #include "DecisionTreeBehavior.h"
 #include "ScreenEdgeBehavior.h"
+#include "pathfinding.h"
+#include <iostream>
+
 
 int main()
 {
@@ -52,14 +55,16 @@ int main()
 	enemy->setPosition(Vector2{ 500.0f, 500.0f });
 	enemy->setSpeed(250.0f);
 	enemy->setColor(PURPLE);
-	ChaseBehavior* chase = new ChaseBehavior();
+	/*ChaseBehavior* chase = new ChaseBehavior();
 	chase->setTarget(player);
-	enemy->addBehavior(chase);
+	enemy->addBehavior(chase);*/
 
-	Agent* enemy2 = new Agent();
+	/*Agent* enemy2 = new Agent();
 	enemy2->setPosition(Vector2{ 500.0f, 300.0f });
 	enemy2->setSpeed(100.0f);
-	enemy2->setColor(PURPLE);
+	enemy2->setColor(PURPLE);*/
+
+	
 	
 	//--------------------------------------------------------------------------------------
 
@@ -70,18 +75,18 @@ int main()
 		//----------------------------------------------------------------------------------
 		player->update(GetFrameTime());
 		enemy->update(GetFrameTime());
-		enemy2->update(GetFrameTime());
+		/*enemy2->update(GetFrameTime());*/
 		//----------------------------------------------------------------------------------
 
 		// Draw
 		//----------------------------------------------------------------------------------
 		BeginDrawing();
 
-		ClearBackground(BLACK);
+		ClearBackground(BLACK);	
 
 		player->draw();
 		enemy->draw();
-		enemy2->draw();
+		/*enemy2->draw();*/
 
 		EndDrawing();
 		//----------------------------------------------------------------------------------
