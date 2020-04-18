@@ -26,6 +26,7 @@
 #include "DecisionTreeBehavior.h"
 #include "ScreenEdgeBehavior.h"
 #include "pathfinding.h"
+#include "EnemyFleeState.h"
 #include <iostream>
 
 
@@ -77,9 +78,28 @@ int main()
 
 	//Create Enemy2
 	Agent* enemy2 = new Agent();
-	enemy2->setPosition(Vector2{ 500.0f, 300.0f });
+	enemy2->setPosition(Vector2{ 500.0f, 450.0f });
 	enemy2->setSpeed(100.0f);
 	enemy2->setColor(PURPLE);
+
+	//Create and add the enemy's FSM
+	FSMBehavior* enemyFSM2 = new FSMBehavior();
+	enemy2->addBehavior(enemyFSM2);
+	//Create and add the idle state
+	IdleState* idleState2 = new IdleState();
+	enemyFSM2->addState(idleState2);
+	//Create and add the attack state
+	EnemyFleeState* fleeState = new EnemyFleeState(player, 250.0f);
+	enemyFSM2->addState(fleeState);
+	//Create and add the condition
+	Condition* withinRangeCondition2 = new WithinRangeCondition(player, 200.0f);
+	enemyFSM2->addCondition(withinRangeCondition2);
+	//Create and add the transition
+	Transition* toAttackTransition2 = new Transition(fleeState, withinRangeCondition2);
+	enemyFSM2->addTransition(toAttackTransition2);
+	idleState2->addTransitions(toAttackTransition2);
+	//Set current state to idle
+	enemyFSM2->setCurrentState(idleState2);
 	//--------------------------------------------------------------------------------------
 
 	// Main game loop

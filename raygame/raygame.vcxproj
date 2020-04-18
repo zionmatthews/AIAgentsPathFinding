@@ -141,6 +141,7 @@
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="DecisionTreeBehavior.cpp" />
     <ClCompile Include="EnemyAttackState.cpp" />
+    <ClCompile Include="EnemyFleeState.cpp" />
     <ClCompile Include="FleeBehavior.cpp" />
     <ClCompile Include="FSMBehavior.cpp" />
     <ClCompile Include="IdleState.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Decision.h" />
     <ClInclude Include="DecisionTreeBehavior.h" />
     <ClInclude Include="EnemyAttackState.h" />
+    <ClInclude Include="EnemyFleeState.h" />
     <ClInclude Include="FleeBehavior.h" />
     <ClInclude Include="FSMBehavior.h" />
     <ClInclude Include="IdleState.h" />
