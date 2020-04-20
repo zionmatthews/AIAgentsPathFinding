@@ -111,10 +111,10 @@ int main()
 	//Set current state to wander
 	enemyFSM2->setCurrentState(wanderState2);
 	
-
+	//             maze   space       size       type      color
 	Maze<tileType> maze({ 9, 6 }, { 100, 100 }, closed, BROWN);
 
-	//Walls
+	//Walls          area     type   color
 	maze.createTile({ 0, 5 }, open, DARKBLUE);
 	maze.createTile({ 0, 3 }, open, DARKBLUE);
 	maze.createTile({ 0, 4 }, open, DARKBLUE);
