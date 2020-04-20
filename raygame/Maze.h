@@ -84,8 +84,7 @@ inline void Maze<T>::draw()
 {
 	//Draw each tile
 	int mapLength = (int)(m_mapSize.x) * (int)(m_mapSize.y);
-	for (int i = 0; i < mapLength; i++)
-	{
+	for (int i = 0; i < mapLength; i++) {
 		//Calculate the position of the tile
 		int posX = i % (int)(m_mapSize.x);
 		int posY = i / (int)(m_mapSize.x);

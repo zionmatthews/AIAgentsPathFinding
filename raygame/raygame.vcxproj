@@ -132,7 +132,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
-    <ClCompile Include="AStar.cpp" />
     <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="BehaviorDecision.cpp" />
     <ClCompile Include="BooleanDecision.cpp" />
@@ -142,12 +141,12 @@
     <ClCompile Include="DecisionTreeBehavior.cpp" />
     <ClCompile Include="EnemyAttackState.cpp" />
     <ClCompile Include="EnemyFleeState.cpp" />
+    <ClCompile Include="EnemyWanderState.cpp" />
     <ClCompile Include="FleeBehavior.cpp" />
     <ClCompile Include="FSMBehavior.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="KeyboardBehavior.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="NodeAgent.cpp" />
     <ClCompile Include="PursuitBehavior.cpp" />
     <ClCompile Include="ScreenEdgeBehavior.cpp" />
     <ClCompile Include="State.cpp" />
@@ -157,7 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
-    <ClInclude Include="AStar.h" />
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="BehaviorDecision.h" />
     <ClInclude Include="BooleanDecision.h" />
@@ -167,11 +165,12 @@
     <ClInclude Include="DecisionTreeBehavior.h" />
     <ClInclude Include="EnemyAttackState.h" />
     <ClInclude Include="EnemyFleeState.h" />
+    <ClInclude Include="EnemyWanderState.h" />
     <ClInclude Include="FleeBehavior.h" />
     <ClInclude Include="FSMBehavior.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="KeyboardBehavior.h" />
-    <ClInclude Include="NodeAgent.h" />
+    <ClInclude Include="Maze.h" />
     <ClInclude Include="pathfinding.h" />
     <ClInclude Include="PursuitBehavior.h" />
     <ClInclude Include="ScreenEdgeBehavior.h" />
